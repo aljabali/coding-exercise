@@ -1,0 +1,26 @@
+body {
+  background: #fafafa;
+  position: relative;
+}
+
+.mdl-layout__header-row{
+margin-bottom: 5vh;
+}
+
+.mdl-card {
+    width:60%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.mdl-textfield{
+width: 90%!important;
+}
+
+.mdl-textfield__error {
+visibility: visible!important;
+}
+
+.hotel-container {
+display: inline-flex;
+}
