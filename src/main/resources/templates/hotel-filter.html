@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+
+<div class="mdl-layout--large-screen-only mdl-layout__header-row mdl-color--primary">
+    <h3>Hotels search</h3>
+</div>
+
+<div style="width:100%" align="center">
+    <form action="#" th:action="@{/hotel-filter}" th:object="${filterRequest}" method="post">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+                <label for="destinationCity" class="mdl-textfield__label">City</label>
+                <select class="mdl-textfield__input" id="destinationCity"  th:field="*{destinationCity}">
+                    <option th:each="city : ${cities}" th:value="${city}" th:text="${city}">Select destination</option>
+                </select>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="date" placeholder="" id="minTripStartDate"
+                       th:field="*{minTripStartDate}"
+                       th:value="${filterRequest.minTripStartDate}">
+                <label class="mdl-textfield__label" for="minTripStartDate">Check-in not before</label>
+                <span class="mdl-textfield__error" th:if="${#fields.hasErrors('minTripStartDate')}"
+                      th:errors="*{minTripStartDate}">Destination required!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="date" placeholder="" id="maxTripStartDate"
+                       th:field="*{maxTripStartDate}">
+                <label class="mdl-textfield__label" for="maxTripStartDate">Check-in not after</label>
+                <span class="mdl-textfield__error" th:if="${#fields.hasErrors('maxTripStartDate')}"
+                      th:errors="*{maxTripStartDate}">Destination required!</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="number" id="lengthOfStay" th:field="*{lengthOfStay}">
+                <label class="mdl-textfield__label" for="lengthOfStay">Number of nights</label>
+                <span class="mdl-textfield__error" th:if="${#fields.hasErrors('lengthOfStay')}"
+                      th:errors="*{lengthOfStay}">Destination required!</span>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    type="submit">
+                Search
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
