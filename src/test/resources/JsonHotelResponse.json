@@ -1,0 +1,77 @@
+{
+  "offerInfo": {
+    "siteID": "1",
+    "language": "en_US",
+    "currency": "USD",
+    "userSelectedCurrency": "USD"
+  },
+  "userInfo": {
+    "persona": {
+      "personaType": "OTHERS"
+    },
+    "userId": "foo"
+  },
+  "offers": {
+    "Hotel": [
+      {
+        "offerDateRange": {
+          "travelStartDate": [
+            2018,
+            12,
+            6
+          ],
+          "travelEndDate": [
+            2018,
+            12,
+            9
+          ],
+          "lengthOfStay": 3
+        },
+        "destination": {
+          "regionID": "178292",
+          "associatedMultiCityRegionId": "178292",
+          "longName": "New Orleans (and vicinity), Louisiana, United States of America",
+          "shortName": "New Orleans",
+          "country": "United States of America",
+          "province": "Louisiana",
+          "city": "New Orleans",
+          "tla": "MSY",
+          "nonLocalizedCity": "New Orleans"
+        },
+        "hotelInfo": {
+          "hotelId": "561327",
+          "hotelName": "Royal St. Charles Hotel",
+          "localizedHotelName": "Royal St. Charles Hotel",
+          "hotelDestination": "New Orleans",
+          "hotelDestinationRegionID": "2434",
+          "hotelLongDestination": "New Orleans,LA,USA",
+          "hotelStreetAddress": "135 St. Charles Avenue",
+          "hotelCity": "New Orleans",
+          "hotelProvince": "LA",
+          "hotelCountryCode": "USA",
+          "hotelLatitude": 29.952265,
+          "hotelLongitude": -90.069772,
+          "hotelStarRating": "3.0",
+          "hotelGuestReviewRating": 4.0,
+          "hotelReviewTotal": 1860,
+          "hotelImageUrl": "https://images.trvl-media.com/hotels/1000000/570000/561400/561327/3bbd8807_t.jpg",
+          "vipAccess": true,
+          "isOfficialRating": false
+        },
+        "hotelPricingInfo": {
+          "averagePriceValue": 105.59,
+          "totalPriceValue": 316.77,
+          "crossOutPriceValue": 150.84,
+          "originalPricePerNight": 150.84,
+          "currency": "USD",
+          "percentSavings": 30.0,
+          "drr": false
+        },
+        "hotelUrls": {
+          "hotelInfositeUrl": "https%3A%2F%2Fwww.expedia.com%2Fgo%2Fhotel%2Finfo%2F561327%2F2018-12-06%2F2018-12-09",
+          "hotelSearchResultUrl": "https%3A%2F%2Fwww.expedia.com%2Fgo%2Fhotel%2Fsearch%2FDestination%2F2018-12-06%2F2018-12-09%3FSearchType%3DDestination%26CityName%3DNew+Orleans%26RegionId%3D178292%26Selected%3D561327"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Coding Exercise - Fadi Aljabali</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+
+<div class="mdl-layout--large-screen-only mdl-layout__header-row mdl-color--primary">
+    <h3>Hotels offers</h3>
+</div>
+
+<div style="width:100%" th:align="center" th:object="${hotelDeals}">
+    <th:block th:each="deal : ${hotelDeals}">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text" th:text="${deal.hotelName}"></h2>
+            </div>
+            <div class="mdl-card__supporting-text hotel-container" th:align="start">
+                <div>
+                    <img th:src="${deal.hotelImageUrl}"/>
+                </div>
+                <div>
+                    <p>Check in</p>
+                    <p th:text="${#dates.format(deal.travelStartDate, 'dd MMM yyyy')}"></p>
+                </div>
+                <div>
+                    <p>Check out</p>
+                    <p th:text="${#dates.format(deal.travelEndDate, 'dd MMM yyyy')}"></p>
+                </div>
+            </div>
+            <!--<div class="mdl-card__actions mdl-card&#45;&#45;border">-->
+                <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">-->
+                    <!--Get Started-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="mdl-card__menu">-->
+                <!--<button class="mdl-button mdl-button&#45;&#45;icon mdl-js-button mdl-js-ripple-effect">-->
+                    <!--<i class="material-icons">share</i>-->
+                <!--</button>-->
+            <!--</div>-->
+        </div>
+    </th:block>
+</div>
+
+
+</body>
+</html>
+

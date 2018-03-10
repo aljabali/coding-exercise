@@ -1,6 +1,9 @@
 package com.aljabali.exercise.hotels;
 
 import com.aljabali.exercise.hotels.model.FilterRequest;
+import com.aljabali.exercise.hotels.model.HotelResponse;
+import com.aljabali.exercise.hotels.services.HotelService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +21,10 @@ import java.util.Objects;
 public class FilterController {
 
     private static final String FILTER_VIEW = "hotel-filter";
+    private static final String HOTEL_RESULTS_VIEW = "hotel-results";
 
+    @Autowired
+    private HotelService hotelService;
 
     @GetMapping("/")
     public String initFilter(Model model) {
@@ -28,19 +34,30 @@ public class FilterController {
 
     @PostMapping("/hotel-filter")
     public String doFilter(@ModelAttribute @Valid FilterRequest filterRequest, BindingResult bindingResult, Model model) {
-        validateTripStartDate(filterRequest, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return FILTER_VIEW;
-        }
-
-        return "";
+        return filterAndForward(filterRequest, bindingResult, model);
     }
 
     @ModelAttribute("cities")
     public List<String> populateCities() {
         //TODO this is mock only and we need api to retrieve the list or pick from somewhere
         return Arrays.asList("Amman", "Aqaba", "Bangkok", "New Orleans");
+
+    }
+
+    private String filterAndForward(FilterRequest filterRequest, BindingResult bindingResult, Model model) {
+        validateTripStartDate(filterRequest, bindingResult);
+        String destinationView = FILTER_VIEW;
+
+
+        if (!bindingResult.hasErrors()) {
+            List<HotelResponse> hotels = hotelService.doSearch(filterRequest);
+            model.addAttribute("hotelDeals", hotels);
+            if (!hotels.isEmpty()) {
+                destinationView = HOTEL_RESULTS_VIEW;
+            }
+        }
+
+        return destinationView;
     }
 
     private void validateTripStartDate(FilterRequest filterRequest, BindingResult bindingResult) {
@@ -50,4 +67,5 @@ public class FilterController {
             bindingResult.addError(objectError);
         }
     }
+
 }
