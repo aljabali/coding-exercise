@@ -31,6 +31,7 @@ the main point that i was not able to call other api(s) to get list of cities ,c
 - Destination should be provided "City or Country"
 - Min/Max pairs of filter options not allowed to overlap, i.e. minStarRating should not be after maxStarRating
 
+* Also i found 2 other query params "destinationCity and destinationCountry" that was able to find different results than the provided "destinationName , regionIds"
 
 The process of CI/CD iam familiar with CI process but is my first time for CD , so overall i consider it good exercise as i explored :
 - Thymeleaf 

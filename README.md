@@ -13,6 +13,7 @@ I prefer to have another API that allow listing of countries and cities in order
 In addition i noticed that "minStarRating/maxStarRating" sometime retrieves data out of date range , i thought this due to provide more close offers but i still think its little bit confusing for the end user
 https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&uid=foo&productType=Hotel&minTripStartDate=2018-04-10&maxTripStartDate=2018-04-20&destinationName=Bangkok
 
+also i was not able to find pagination query params :( 
 
 Travis CI link : https://travis-ci.org/aljabali/coding-exercise
 
