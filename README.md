@@ -1,6 +1,6 @@
 # coding-exercise
 
-###How to deploy
+### How to deploy
 - Deploy Java 8 runtime environment.
 - Define JAVA-HOME environment variable
 - Copy the Jar artifact to your prefered folder
@@ -15,4 +15,5 @@ https://offersvc.expedia.com/offers/v2/getOffers?scenario=deal-finder&page=foo&u
 
 
 Travis CI link : https://travis-ci.org/aljabali/coding-exercise
+
 Heroku - Demo link  : https://expedia-code-exercise.herokuapp.com

@@ -1,12 +1,12 @@
-#Coding exercise
+# Coding exercise
 
-##Used technologies
+## Used technologies
 - Springboot 2.0
 - Thymeleafe
 - Material Design Lite 
 - JDK 8 - prefered latest build
 
-##Why these technologies  
+## Why these technologies  
 #### Springboot 2.0 , 
 Overall springboot is very powerful with less effort and many features out of the box "i.e. security handling, simple rest , simple integrations ". 
 
@@ -17,7 +17,7 @@ Eventhough iam familiar with Angular for front end but i thought it was a good c
 Material is a very simple and nice once that trend of website move toward it.
 
 
-##What aimed to accomplesh 
+## What aimed to accomplish 
 * I was trying to have website enables user to find good deals for hotel reservation based on provided API,
 the main point that i was not able to call other api(s) to get list of cities ,countries or regions due to need for api key, thats why i changed it to be free text.
 
