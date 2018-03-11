@@ -20,8 +20,7 @@
 
 <div style="width:100%" align="center">
     <form action="#" th:action="@{/hotel-filter}" th:object="${filterRequest}" method="get">
-        <label th:if="${hotelDeals}">No Results found - try with another filters</label>
-
+        <label th:if="${noDeals}">No Results found - try with another filters</label>
         <div class="mdl-card mdl-shadow--2dp">
             <div class="mdl-card__supporting-text hotel-container">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -116,14 +115,12 @@
 
             <div class="mdl-card__supporting-text hotel-container" th:align="start">
 
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                         type="submit">
-                    Search
-                </button>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--basic"
+                </input>
+                <input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--basic"
                         type="reset">
-                    Reset
-                </button>
+                </input>
             </div>
         </div>
     </form>

@@ -9,8 +9,11 @@ public class HotelResponse {
     private final String hotelStreetAddress;
     private final Double hotelStarRating;
     private final Double hotelGuestReviewRating;
+    private final Double percentSavings;
+    private final Double totalPriceValue;
     private final long hotelReviewTotal;
     private final String hotelImageUrl;
+    private final String currency;
     private final Date travelStartDate;
     private final Date travelEndDate;
     private final Integer lengthOfStay;
@@ -26,6 +29,21 @@ public class HotelResponse {
         travelStartDate = hotel.getOfferDateRange().wrapTravelStartDate();
         travelEndDate = hotel.getOfferDateRange().wrapTravelEndDate();
         lengthOfStay = hotel.getOfferDateRange().getLengthOfStay();
+        percentSavings = hotel.getHotelPricingInfo().getPercentSavings();
+        totalPriceValue = hotel.getHotelPricingInfo().getTotalPriceValue();
+        currency = hotel.getHotelPricingInfo().getCurrency();
+    }
+
+    public Double getPercentSavings() {
+        return percentSavings;
+    }
+
+    public Double getTotalPriceValue() {
+        return totalPriceValue;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     public String getHotelName() {

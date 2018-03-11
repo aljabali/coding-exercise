@@ -15,7 +15,8 @@
 <body>
 
 <div class="mdl-layout--large-screen-only mdl-layout__header-row mdl-color--primary">
-    <a th:href="@{/}" class="mdl-js-ripple-effect"><h4>(back to search)</h4></a> <h3 class="offers-title">Hotels offers</h3>
+    <a th:href="@{/}" class="mdl-js-ripple-effect"><h4>(another search)</h4></a>
+    <h3 class="offers-title">Hotels offers</h3>
 </div>
 
 <div style="width:100%" th:align="center" th:object="${hotelDeals}">
@@ -25,19 +26,40 @@
                 <h2 class="mdl-card__title-text" th:text="${deal.hotelName}"></h2>
             </div>
             <div class="mdl-card__supporting-text hotel-container" th:align="start">
+
                 <div>
                     <img th:src="${deal.hotelImageUrl}"/>
                 </div>
-                <div class="">
-                    <p>Check in</p>
-                    <p th:text="${#dates.format(deal.travelStartDate, 'dd MMM yyyy')}"></p>
-                </div>
                 <div>
-                    <p>Check out</p>
-                    <p th:text="${#dates.format(deal.travelEndDate, 'dd MMM yyyy')}"></p>
+                    <p class="info-label">You will check-in (
+                        <label class="info-text"
+                               th:text="${#dates.format(deal.travelStartDate, 'dd MMM yyyy')}"></label>
+                        <label class="info-label">) and check out (</label>
+                        <label class="info-text" th:text="${#dates.format(deal.travelEndDate, 'dd MMM yyyy')}"></label>
+                        <label class="info-label">) with Total staying nights:</label>
+                        <label class="info-text" th:text="${deal.lengthOfStay}"></label>
+                    </p>
+                    <p class="info-label">Star rating:
+                        <label class="info-text" th:text="${deal.hotelStarRating}"></label>
+                        <th:block th:if="${deal.hotelReviewTotal} > 0">
+
+                            <label class="info-label">Guest rating:</label>
+                            <label class="info-text" th:text="${deal.hotelGuestReviewRating}"></label>
+                        </th:block>
+                    </p>
                 </div>
             </div>
-            <!--<div class="mdl-card__actions mdl-card&#45;&#45;border">-->
+            <div class="mdl-card__actions mdl-card--border">
+                <div>
+                    <p>Total Price :
+                        <label th:text="${deal.totalPriceValue} + ' ' + ${deal.currency}"></label> &nbsp;&nbsp;
+                        <th:block th:if="${deal.percentSavings} > 0">
+                            <label>with saving of :</label>
+                            <label th:text="${deal.percentSavings} + '%'"></label>
+                        </th:block>
+                    </p>
+                </div>
+            </div>
             <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">-->
             <!--Get Started-->
             <!--</a>-->

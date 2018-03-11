@@ -37,40 +37,38 @@ public class FilterController {
         return filterAndForward(filterRequest, bindingResult, model);
     }
 
-    @ModelAttribute("cities")
-    public List<String> populateCities() {
-        //TODO this is mock only and we need api to retrieve the list or pick from somewhere
-        return Arrays.asList("Amman", "Aqaba", "Bangkok", "New Orleans");
+    private String filterAndForward(FilterRequest filterRequest, BindingResult bindingResult, Model model) {
+        technicalValidation(filterRequest, bindingResult);
+        String resultView = FILTER_VIEW;
 
+        if (!bindingResult.hasErrors()) {
+            List<HotelResponse> hotels = hotelService.doSearch(filterRequest);
+            if (!hotels.isEmpty()) {
+                model.addAttribute("hotelDeals", hotels);
+                resultView = HOTEL_RESULTS_VIEW;
+            } else {
+                model.addAttribute("noDeals", true);
+            }
+        }
+
+        return resultView;
     }
 
-    private String filterAndForward(FilterRequest filterRequest, BindingResult bindingResult, Model model) {
+    private void technicalValidation(FilterRequest filterRequest, BindingResult bindingResult) {
         validateAnyDestinationProvided(filterRequest, bindingResult);
         validateTripStartDate(filterRequest, bindingResult);
         validateRange(filterRequest.getMinStarRating(), filterRequest.getMaxStarRating(), "minStarRating", bindingResult);
         validateRange(filterRequest.getMinTotalRate(), filterRequest.getMaxTotalRate(), "minTotalRate", bindingResult);
         validateRange(filterRequest.getMinGuestRating(), filterRequest.getMaxGuestRating(), "minGuestRating", bindingResult);
-
-        String destinationView = FILTER_VIEW;
-
-
-        if (!bindingResult.hasErrors()) {
-            List<HotelResponse> hotels = hotelService.doSearch(filterRequest);
-            model.addAttribute("hotelDeals", hotels);
-            if (!hotels.isEmpty()) {
-                destinationView = HOTEL_RESULTS_VIEW;
-            }
-        }
-
-        return destinationView;
     }
 
     private void validateAnyDestinationProvided(FilterRequest filterRequest, BindingResult bindingResult) {
-        if (StringUtils.isEmpty(filterRequest.getDestinationCity()) && StringUtils.isEmpty(filterRequest.getDestinationCountry()) ) {
+        if (StringUtils.isEmpty(filterRequest.getDestinationCity()) && StringUtils.isEmpty(filterRequest.getDestinationCountry())) {
             FieldError objectError = new FieldError("filterRequest", "destinationCity", filterRequest.getDestinationCity(), false, null, null, "Destination is required, you can fill City or Country ");
             bindingResult.addError(objectError);
         }
     }
+
     private void validateTripStartDate(FilterRequest filterRequest, BindingResult bindingResult) {
         if (Objects.nonNull(filterRequest.getMinTripStartDate()) && Objects.nonNull(filterRequest.getMaxTripStartDate()) &&
                 filterRequest.getMinTripStartDate().getTime() > filterRequest.getMaxTripStartDate().getTime()) {
@@ -79,7 +77,7 @@ public class FilterController {
         }
     }
 
-    private void validateRange(Double min, Double max, String fieldName ,BindingResult bindingResult) {
+    private void validateRange(Double min, Double max, String fieldName, BindingResult bindingResult) {
         if (Objects.nonNull(min) && Objects.nonNull(max) && min > max) {
             FieldError objectError = new FieldError("filterRequest", fieldName, min, false, null, null, "Min value should be less than or equal related max");
             bindingResult.addError(objectError);
