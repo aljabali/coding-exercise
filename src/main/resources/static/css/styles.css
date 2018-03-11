@@ -3,6 +3,9 @@ body {
   position: relative;
 }
 
+.mdl-color--primary {
+color: white;
+}
 .mdl-layout__header-row{
 margin-bottom: 5vh;
 }
@@ -14,7 +17,9 @@ margin-bottom: 5vh;
 }
 
 .mdl-textfield{
-width: 90%!important;
+width: 40%!important;
+margin-left: 10px;
+margin-right: 10px;
 }
 
 .mdl-textfield__error {
@@ -23,4 +28,8 @@ visibility: visible!important;
 
 .hotel-container {
 display: inline-flex;
+}
+.offers-title {
+margin-left : 20px;
+color: white;
 }

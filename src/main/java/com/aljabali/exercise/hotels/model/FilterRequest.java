@@ -2,7 +2,8 @@ package com.aljabali.exercise.hotels.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -11,8 +12,6 @@ public class FilterRequest {
 
     private String destinationName;
     private String destinationCountry;
-
-    @NotEmpty
     private String destinationCity;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -22,12 +21,29 @@ public class FilterRequest {
     private Date maxTripStartDate = defaultFilterDate(2);
 
     private long lengthOfStay = 1l;
-    private String minStarRating;
-    private String maxStarRating;
-    private String minTotalRate;
-    private String maxTotalRate;
-    private String minGuestRating;
-    private String maxGuestRating;
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "7")
+    private Double minStarRating;
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "7")
+    private Double maxStarRating;
+
+    @DecimalMin(value = "0")
+    private Double minTotalRate;
+
+    @DecimalMin(value = "0")
+    private Double maxTotalRate;
+
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "10")
+    private Double minGuestRating;
+
+    @DecimalMin(value = "0")
+    @DecimalMax(value = "10")
+    private Double maxGuestRating;
 
 
     private Date defaultFilterDate(int extraDays) {
@@ -79,6 +95,7 @@ public class FilterRequest {
         return this;
     }
 
+
     public long getLengthOfStay() {
         return lengthOfStay;
     }
@@ -88,56 +105,56 @@ public class FilterRequest {
         return this;
     }
 
-    public String getMinStarRating() {
+    public Double getMinStarRating() {
         return minStarRating;
     }
 
-    public FilterRequest setMinStarRating(String minStarRating) {
+    public FilterRequest setMinStarRating(Double minStarRating) {
         this.minStarRating = minStarRating;
         return this;
     }
 
-    public String getMaxStarRating() {
+    public Double getMaxStarRating() {
         return maxStarRating;
     }
 
-    public FilterRequest setMaxStarRating(String maxStarRating) {
+    public FilterRequest setMaxStarRating(Double maxStarRating) {
         this.maxStarRating = maxStarRating;
         return this;
     }
 
-    public String getMinTotalRate() {
+    public Double getMinTotalRate() {
         return minTotalRate;
     }
 
-    public FilterRequest setMinTotalRate(String minTotalRate) {
+    public FilterRequest setMinTotalRate(Double minTotalRate) {
         this.minTotalRate = minTotalRate;
         return this;
     }
 
-    public String getMaxTotalRate() {
+    public Double getMaxTotalRate() {
         return maxTotalRate;
     }
 
-    public FilterRequest setMaxTotalRate(String maxTotalRate) {
+    public FilterRequest setMaxTotalRate(Double maxTotalRate) {
         this.maxTotalRate = maxTotalRate;
         return this;
     }
 
-    public String getMinGuestRating() {
+    public Double getMinGuestRating() {
         return minGuestRating;
     }
 
-    public FilterRequest setMinGuestRating(String minGuestRating) {
+    public FilterRequest setMinGuestRating(Double minGuestRating) {
         this.minGuestRating = minGuestRating;
         return this;
     }
 
-    public String getMaxGuestRating() {
+    public Double getMaxGuestRating() {
         return maxGuestRating;
     }
 
-    public FilterRequest setMaxGuestRating(String maxGuestRating) {
+    public FilterRequest setMaxGuestRating(Double maxGuestRating) {
         this.maxGuestRating = maxGuestRating;
         return this;
     }

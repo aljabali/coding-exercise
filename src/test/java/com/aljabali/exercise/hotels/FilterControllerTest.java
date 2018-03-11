@@ -25,7 +25,6 @@ import java.util.Date;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -60,7 +59,7 @@ public class FilterControllerTest {
 
     @Test
     public void givenFilterView_whenCityNotFilled_thenFlagDestinationCityAsError() throws Exception {
-        this.mockMvc.perform(post("/hotel-filter")
+        this.mockMvc.perform(get("/hotel-filter")
                 .flashAttr("filterRequest", filterWithMissingCity()))
                 .andExpect(status().isOk())
                 .andExpect(model().errorCount(1))
@@ -69,7 +68,7 @@ public class FilterControllerTest {
 
     @Test
     public void givenFilterView_whenStartDateRangeAndFlipped_thenFlagMinTripDateAsError() throws Exception {
-        this.mockMvc.perform(post("/hotel-filter")
+        this.mockMvc.perform(get("/hotel-filter")
                 .flashAttr("filterRequest", filterWithFlippedStartDateRange()))
                 .andExpect(status().isOk())
                 .andExpect(model().errorCount(1))
@@ -78,7 +77,7 @@ public class FilterControllerTest {
 
     @Test
     public void givenFilterView_whenStartDateRangeAndFlipped_thenReturnErrors() throws Exception {
-        this.mockMvc.perform(post("/hotel-filter")
+        this.mockMvc.perform(get("/hotel-filter")
                 .flashAttr("filterRequest", filterWithFlippedStartDateRange()))
                 .andExpect(status().isOk())
                 .andExpect(model().errorCount(1))
@@ -86,19 +85,32 @@ public class FilterControllerTest {
     }
 
     @Test
+    public void givenFilterView_whenStarRatingRangeAndFlipped_thenReturnErrors() throws Exception {
+        this.mockMvc.perform(get("/hotel-filter")
+                .flashAttr("filterRequest", filterWithStartRatingFlipped()))
+                .andExpect(status().isOk())
+                .andExpect(model().errorCount(1))
+                .andExpect(model().attributeHasFieldErrors("filterRequest", "minStarRating"));
+    }
+
+    @Test
     public void givenFilterView_whenRestReturnOffers_thenReturnHotelsDeals() throws Exception {
 
         when(restTemplate.getForObject(any(URI.class), any())).thenReturn(MockRestResponseLoader.importWorkflow());
 
-        this.mockMvc.perform(post("/hotel-filter")
+        this.mockMvc.perform(get("/hotel-filter")
                 .flashAttr("filterRequest", new FilterRequest().setDestinationCity("Amman")))
                 .andExpect(status().isOk())
                 .andExpect(model().errorCount(0))
                 .andExpect(model().attributeExists("hotelDeals"));
     }
 
+    private FilterRequest filterWithStartRatingFlipped() {
+        return new FilterRequest().setDestinationCity("Amman").setMinStarRating(Double.valueOf(5)).setMaxStarRating(Double.valueOf(2));
+    }
+
     private FilterRequest filterWithMissingCity() {
-        return new FilterRequest().setDestinationCity("");
+        return new FilterRequest().setDestinationCity("").setDestinationCountry("");
     }
 
     private FilterRequest filterWithFlippedStartDateRange() {

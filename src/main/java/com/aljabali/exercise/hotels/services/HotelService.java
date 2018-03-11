@@ -54,8 +54,14 @@ public class HotelService {
     private MultiValueMap<String, String> buildQueryParamsMap(FilterRequest filterRequest) {
         QueryParamsBuilder queryParamsBuilder = new QueryParamsBuilder()
                 .injectDestinationCity(filterRequest.getDestinationCity())
+                .injectDestinationCountry(filterRequest.getDestinationCountry())
                 .injectTripStartDateParams(filterRequest.getMinTripStartDate(), filterRequest.getMaxTripStartDate())
-                .injectLengthOfStay(filterRequest.getLengthOfStay());
+                .injectMinStarRating(filterRequest.getMinStarRating())
+                .injectMaxStarRating(filterRequest.getMaxStarRating())
+                .injectMinTotalRate(filterRequest.getMinTotalRate())
+                .injectMaxTotalRate(filterRequest.getMaxTotalRate())
+                .injectMinGuestRating(filterRequest.getMinGuestRating())
+                .injectMaxGuestRating(filterRequest.getMaxGuestRating());
         return queryParamsBuilder.getQueryParamsMap();
     }
 

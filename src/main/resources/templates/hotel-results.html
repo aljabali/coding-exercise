@@ -15,7 +15,7 @@
 <body>
 
 <div class="mdl-layout--large-screen-only mdl-layout__header-row mdl-color--primary">
-    <h3>Hotels offers</h3>
+    <a th:href="@{/}" class="mdl-js-ripple-effect"><h4>(back to search)</h4></a> <h3 class="offers-title">Hotels offers</h3>
 </div>
 
 <div style="width:100%" th:align="center" th:object="${hotelDeals}">
@@ -28,7 +28,7 @@
                 <div>
                     <img th:src="${deal.hotelImageUrl}"/>
                 </div>
-                <div>
+                <div class="">
                     <p>Check in</p>
                     <p th:text="${#dates.format(deal.travelStartDate, 'dd MMM yyyy')}"></p>
                 </div>
@@ -38,14 +38,14 @@
                 </div>
             </div>
             <!--<div class="mdl-card__actions mdl-card&#45;&#45;border">-->
-                <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">-->
-                    <!--Get Started-->
-                <!--</a>-->
+            <!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">-->
+            <!--Get Started-->
+            <!--</a>-->
             <!--</div>-->
             <!--<div class="mdl-card__menu">-->
-                <!--<button class="mdl-button mdl-button&#45;&#45;icon mdl-js-button mdl-js-ripple-effect">-->
-                    <!--<i class="material-icons">share</i>-->
-                <!--</button>-->
+            <!--<button class="mdl-button mdl-button&#45;&#45;icon mdl-js-button mdl-js-ripple-effect">-->
+            <!--<i class="material-icons">share</i>-->
+            <!--</button>-->
             <!--</div>-->
         </div>
     </th:block>

@@ -39,10 +39,52 @@ class QueryParamsBuilder extends LinkedMultiValueMap<String, String> {
         return this;
     }
 
+    public QueryParamsBuilder injectDestinationCountry(String destinationCountry) {
+        uriVariables.add("destinationCountry", destinationCountry);
+        return this;
+    }
+
     public QueryParamsBuilder injectLengthOfStay(long lengthOfStay) {
         if (lengthOfStay > 0)
             uriVariables.add("lengthOfStay", String.valueOf(lengthOfStay));
+        return this;
+    }
 
+
+    public QueryParamsBuilder injectMinStarRating(Double minTotalRate) {
+        if (Objects.nonNull(minTotalRate) && minTotalRate > 0)
+            uriVariables.add("minStarRating", String.valueOf(minTotalRate));
+        return this;
+    }
+
+    public QueryParamsBuilder injectMaxStarRating(Double maxStarRating) {
+        if (Objects.nonNull(maxStarRating) && maxStarRating > 0)
+            uriVariables.add("maxStarRating", String.valueOf(maxStarRating));
+        return this;
+    }
+
+
+    public QueryParamsBuilder injectMinTotalRate(Double minTotalRate) {
+        if (Objects.nonNull(minTotalRate) && minTotalRate  > 0)
+            uriVariables.add("minTotalRate", String.valueOf(minTotalRate));
+        return this;
+    }
+
+    public QueryParamsBuilder injectMaxTotalRate(Double maxTotalRate) {
+        if (Objects.nonNull(maxTotalRate) && maxTotalRate > 0)
+            uriVariables.add("maxTotalRate", String.valueOf(maxTotalRate));
+        return this;
+    }
+
+    public QueryParamsBuilder injectMinGuestRating(Double minGuestRating) {
+        if (Objects.nonNull(minGuestRating) && minGuestRating > 0)
+            uriVariables.add("minGuestRating", String.valueOf(minGuestRating));
+        return this;
+    }
+
+    public QueryParamsBuilder injectMaxGuestRating(Double maxGuestRating) {
+        if (Objects.nonNull(maxGuestRating) && maxGuestRating > 0)
+            uriVariables.add("maxGuestRating", String.valueOf(maxGuestRating));
         return this;
     }
 
